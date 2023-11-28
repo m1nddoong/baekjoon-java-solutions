@@ -50,3 +50,9 @@
 int same = a == b ? a : c;
 ```
 
+삼항 연산자를 다음과 같이 Max.max 를 사용할 수도 있다.
+
+```java
+int max = Math.max(a, b);
+max = Math.max(max, c);
+```
