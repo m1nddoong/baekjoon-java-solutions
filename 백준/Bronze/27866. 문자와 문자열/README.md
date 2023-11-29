@@ -28,3 +28,40 @@
 
  <p><mjx-container class="MathJax" jax="CHTML" style="font-size: 109%; position: relative;"> <mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>S</mi></math></mjx-assistive-mml><span aria-hidden="true" class="no-mathjax mjx-copytext">$S$</span></mjx-container>의 <mjx-container class="MathJax" jax="CHTML" style="font-size: 109%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math></mjx-assistive-mml><span aria-hidden="true" class="no-mathjax mjx-copytext">$i$</span></mjx-container>번째 글자를 출력한다.</p>
 
+
+### 메모
+
+처음에는 문자의 대소문자인지를 어떻게 판단할 수 있을지를 고민하다가 `for` 문을 돌리면서 `String S` 의 각 단어 즉, `charAt(j)` 의 값이 아스키코드상에서 `'A'` 보다 크고 `'z'` 보다 작으면 될 것이라 생각했다.
+
+하지만 코드가 런타임 에러가 나는 것이다. 대충 다음과 같이 코드를 짜보았다.
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String S = scanner.nextLine();
+        // 여기서 필요한 것은 소문자와 대문자로만 이루어진 단어만 입력 가능
+        int i = scanner.nextInt();
+        boolean isUpper = true;
+        if ((!S.isEmpty() && S.length() <= 1000) && (1 <= i && i <= S.length())) {
+            for (int j = 0; j < S.length(); j++) {
+                if ('A' > S.charAt(j) && S.charAt(j) > 'z') { // 대소문자를 만족하지 않으면
+                    isUpper = false;
+                }
+            }
+            if (isUpper == true) {
+                System.out.println(S.charAt(i));
+            }
+        }
+    }
+}
+```
+
+런타임 에러가 난 이상, 코드를 수정해도 도저히 오류가 해결되지 않아 외부 자료를 찾아 본 결과 
+
+- foreach 구문에 `String S` 를 `S.toCharArray()` 를 통해 배열로 만들어 그 안의 `char c` 를 원소로 취하였고
+- `!Charactor.isLetter(c)` 를 통해서
+   - 문자(char)를 다루기 위한 `java.lang` 패키지 내의 `Character` 클래스
+   - `Character` 의 `isLetter(char ch)` 라는 메서드는 주어진 문자가 알파벳인지 여부를 확인시켜준다.
