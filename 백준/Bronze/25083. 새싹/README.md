@@ -26,3 +26,21 @@
 
  <p>새싹을 출력한다.</p>
 
+---
+
+### 메모
+```
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("         ,r'\"7"); 
+        System.out.println("r`-_   ,'  ,/");
+        System.out.println(" \\. \". L_r'");   // 뒷부분에 공백문자를 넣으면 잘못된 출력 형식이라는 에러메세지가 발생
+        System.out.println("   `~\\/"); 
+        System.out.println("      |");
+        System.out.println("      |");
+    }
+}
+```
+
+
+
