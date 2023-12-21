@@ -13,14 +13,15 @@ public class Main {
             String input = reader.readLine();
             int n = Integer.parseInt(input.split(" ")[1]);
             int r = Integer.parseInt(input.split(" ")[0]);
-            dp = new int[n+1][r+1];
+            // dp = new int[n+1][r+1];
             writer.write(BC(n, r) + "\n");
         }
         writer.flush();
     }
 
-    // private static int[][] dp = new int[30][30]; 메모리 할당 문제
-    static int[][] dp;
+    
+    private static int[][] dp = new int[30][30]; 
+    // static int[][] dp;
 
     public static int BC(int n, int r) { // 이항 계수(조합)
         if (dp[n][r] > 0) {
