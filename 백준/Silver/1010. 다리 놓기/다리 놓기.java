@@ -13,23 +13,21 @@ public class Main {
             String input = reader.readLine();
             int n = Integer.parseInt(input.split(" ")[1]);
             int r = Integer.parseInt(input.split(" ")[0]);
-            // dp = new int[n+1][r+1];
             writer.write(BC(n, r) + "\n");
         }
         writer.flush();
     }
 
-    
-    private static int[][] dp = new int[30][30]; 
-    // static int[][] dp;
+
+    private static int[][] dp = new int[30][30];
 
     public static int BC(int n, int r) { // 이항 계수(조합)
         if (dp[n][r] > 0) {
             return dp[n][r];
         }
         if (n == r || r == 0) {
-            //return dp[n][r] = 1;
-            return 1;
+            return dp[n][r] = 1;
+            // return 1;
         }
         // return BC(n - 1, r - 1) + BC(n - 1, r);
         int result = BC(n - 1, r - 1) + BC(n - 1, r);
